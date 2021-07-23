@@ -72,31 +72,7 @@ public class SellerDaoJDBC implements SellerDao {
 		}
 		
 	}
-
-	private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
-		Seller obj = new Seller();
-		obj.setId(rs.getInt("Id"));
-		obj.setName(rs.getString("Name"));
-		obj.setEmail(rs.getString("Email"));
-		obj.setBirthDate(rs.getDate("BirthDate"));
-		obj.setBaseSalary(rs.getDouble("BaseSalary"));
-		obj.setDepartment(dep);
-		return obj;
-	}
-
-	private Department instantiateDepartment(ResultSet rs) throws SQLException {
-		Department dep = new Department();
-		dep.setId(rs.getInt("DepartmentId"));
-		dep.setName(rs.getString("DepName"));
-		return dep;
-	}
-
-	@Override
-	public List<Seller> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	public List<Seller> findByDepartment(Department department) {
 		PreparedStatement st = null;
@@ -123,8 +99,7 @@ public class SellerDaoJDBC implements SellerDao {
 				if(dep == null) {
 					dep = instantiateDepartment(rs); // o método está no fim do programa
 					map.put(rs.getInt("DepartmentId"), dep);
-				}
-				 
+				}				 
 				Seller obj = instantiateSeller(rs,dep); // o método está no fim do programa
 				list.add(obj);
 			}
@@ -137,6 +112,30 @@ public class SellerDaoJDBC implements SellerDao {
 			DB.closeStatement(st);
 			DB.closeResultSet(rs);
 		}
+	}
+
+	private Seller instantiateSeller(ResultSet rs, Department dep) throws SQLException {
+		Seller obj = new Seller();
+		obj.setId(rs.getInt("Id"));
+		obj.setName(rs.getString("Name"));
+		obj.setEmail(rs.getString("Email"));
+		obj.setBirthDate(rs.getDate("BirthDate"));
+		obj.setBaseSalary(rs.getDouble("BaseSalary"));
+		obj.setDepartment(dep);
+		return obj;
+	}
+
+	private Department instantiateDepartment(ResultSet rs) throws SQLException {
+		Department dep = new Department();
+		dep.setId(rs.getInt("DepartmentId"));
+		dep.setName(rs.getString("DepName"));
+		return dep;
+	}
+
+	@Override
+	public List<Seller> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
