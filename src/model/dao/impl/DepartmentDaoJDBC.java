@@ -79,7 +79,20 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 
 	@Override
 	public void deletByid(Integer id) {
-		// TODO Auto-generated method stub
+		// Rotina que deleta registro na tabela Departament
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("DELETE FROM department WHERE Id = ?");
+			st.setInt(1, id);
+			int linha = st.executeUpdate();
+			if(linha == 0) {
+				throw new DbException("Código Não Encontrado!");
+			}
+		}catch(SQLException e) {
+			throw new DbException(e.getMessage());
+		}finally {
+			DB.closeStatement(st);
+		}
 		
 	}
 
