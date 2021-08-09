@@ -1,6 +1,7 @@
 package application;
 
 import java.text.ParseException;
+import java.util.List;
 import java.util.Scanner;
 
 import model.dao.DaoFactory;
@@ -14,13 +15,16 @@ public class ProgramDois {
 		Scanner sc = new Scanner(System.in);
 		DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 		System.out.println(" === TESTE 1: department findById === ");
-		System.out.print("Digite o código do departamento: ");
-		int codigo = sc.nextInt();
-		Department department = departmentDao.findByid(codigo);
+		//System.out.print("Digite o código do departamento: ");
+		//int codigo = sc.nextInt();
+		Department department = departmentDao.findByid(3);
 		System.out.println(department);
-		
+	
 		System.out.println(" === TESTE 2: department findAll === ");
-		
+		List<Department> list = departmentDao.findAll();
+		for(Department obj : list) {
+			System.out.println(obj);
+		}
 		System.out.println(" === TESTE 3: department Insert === ");
 		
 		System.out.println(" === TESTE 4: department Update === ");
