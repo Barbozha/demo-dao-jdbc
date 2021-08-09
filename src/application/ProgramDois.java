@@ -27,11 +27,15 @@ public class ProgramDois {
 		}
 		
 		System.out.println(" === TESTE 3: department Insert === ");
-		Department newDepartment = new Department(null, "Hardware");
+		Department newDepartment = new Department(null, "Utilidades");
 		departmentDao.insert(newDepartment);
 		System.out.println("Inserido! Novo id = " + newDepartment.getId());
 		
 		System.out.println(" === TESTE 4: department Update === ");
+		department = departmentDao.findByid(6);
+		department.setName("Tênis");
+		departmentDao.update(department);
+		System.out.println("Update Realizado com Sucesso!");
 		
 		System.out.println(" === TESTE 5: department Delete === ");
 		
