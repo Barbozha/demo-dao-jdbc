@@ -25,7 +25,11 @@ public class ProgramDois {
 		for(Department obj : list) {
 			System.out.println(obj);
 		}
+		
 		System.out.println(" === TESTE 3: department Insert === ");
+		Department newDepartment = new Department(null, "Hardware");
+		departmentDao.insert(newDepartment);
+		System.out.println("Inserido! Novo id = " + newDepartment.getId());
 		
 		System.out.println(" === TESTE 4: department Update === ");
 		
